@@ -1,4 +1,6 @@
 <?php
+// call the db
+include './config/database.php';
 
 // routes and pages requests:
 $routes=[
@@ -19,5 +21,7 @@ if ($routes[$action]) {
 }else{
     include  "./ressources/views/errors/404.php";
 }
+
+
 
 ?>
