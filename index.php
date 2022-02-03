@@ -1,0 +1,1 @@
+<?php echo "Binevenue sur le blog"; ?>
