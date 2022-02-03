@@ -4,8 +4,9 @@ include './config/database.php';
 
 // routes and pages requests:
 $routes=[
-    null=>["file"=>"accueil.php","mTitle"=>"Blog - accueil", "mDesc" =>"Bienvenue sur notre blog"],
-    "accueil"=>["file"=>"accueil.php","mTitle"=>"Blog - Accueil", "mDesc" =>"Bienvenue sur notre blog"],
+    null=>["file"=>"./app/controllers/homeControllers","mTitle"=>"Blog - accueil", "mDesc" =>"Bienvenue sur notre blog"],
+    "/"=> ["file"=> "./app/controllers/homeControllers","mTitle"=>"Blog - Accueil", "mDesc" =>"Bienvenue sur notre blog"],
+    "accueil"=>["file"=>"./app/controllers/homeControllers","mTitle"=>"Blog - Accueil", "mDesc" =>"Bienvenue sur notre blog"],
     "aPropos"=>["file"=>"aPropos.php","mTitle"=>"Blog - A Propos", "mDesc" =>"A propos de nous"],
     "contact"=>["file"=>"contact.php","mTitle"=>"Blog - Contact", "mDesc" =>"Contactez-nous"]
 ];
