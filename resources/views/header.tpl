@@ -14,7 +14,7 @@
         <h1>Bienvenue sur le blog</h1>
         <nav class="menu">
             <ul>
-                <li><a href="/index.php">Accueil</a></li>
+                <li><a href="/">Accueil</a></li>
                 <li><a href="/index.php?action=aPropos">À propos</a></li>
                 <li><a href="/index.php?action=contact">Contact</a></li>
             </ul>
