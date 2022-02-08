@@ -1,4 +1,5 @@
 <?php
+
 include "./resources/views/header.tpl";
 
 if(!empty($postData)){

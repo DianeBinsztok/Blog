@@ -6,29 +6,29 @@ include './config/database.php';
 
 
 // routes and pages requests:
+// les clés du tableau sont les input GET ( enregistrés ds la var $action )
 $routes=[
     null=>["file"=>"./app/controllers/homeController.php","mTitle"=>"Blog - accueil", "mDesc" =>"Bienvenue sur notre blog"],
     "/"=> ["file"=> "./app/controllers/homeController.php","mTitle"=>"Blog - Accueil", "mDesc" =>"Bienvenue sur notre blog"],
     "accueil"=>["file"=>"./app/controllers/homeController.php","mTitle"=>"Blog - Accueil", "mDesc" =>"Bienvenue sur notre blog"],
-    "aPropos"=>["file"=>"aPropos.php","mTitle"=>"Blog - A Propos", "mDesc" =>"A propos de nous"],
-    "contact"=>["file"=>"contact.php","mTitle"=>"Blog - Contact", "mDesc" =>"Contactez-nous"]
+    "postPage"=>["file"=>"./app/controllers/blogPostController.php" ,"postId"=>0, "mTitle"=>"Blog - Détail du post", "mDesc" =>"Détail du post"],
 ];
 
 // routing and custom metadata for each page:
+
+
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 if ($routes[$action]) {
     $metaTitle=$routes[$action]['mTitle'];
     $metaDescription=$routes[$action]['mDesc'];
-    require "./ressources/views/layouts/header.php";
+
     include  $routes[$action]["file"];
     // une fois que j'ai appelé app/controllers/homeController avec ma route, il va chercher blogPostData et sa fonction
     // lit: app/controllers/homeController > app/persistences/blogPostData.php > lastBlogPosts();
 
-    require "./ressources/views/layouts/footer.php";
 }else{
-    include  "./ressources/views/errors/404.php";
+    include "./resources/views/errors/404.php";
 }
-
 
 
 

@@ -1,6 +1,13 @@
 <?php
 include "config/database.php";
 include "app/persistences/blogPostData.php";
-$postData=blogPostById($dtb, 2); //c'est ce searchId que je vais définir dynamiquement
-$postComments=commentsByBlogPost($dtb, 2 );
+
+$postId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+
+$postData=blogPostById($dtb, $postId); //c'est ce searchId que je vais définir dynamiquement
+
+$metaTitle=$postData["title"];
+$metaDescription=$postData["title"];
+
+$postComments=commentsByBlogPost($dtb, $postId);
 include "./resources/views/layouts/blogPost.tpl.php";
