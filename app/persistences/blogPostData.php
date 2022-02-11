@@ -48,3 +48,11 @@ function blogPostUpdate($data, $postId, $updatedAuthor, $updatedTitle, $updatedS
     xdebug_var_dump($data, $postId, $updatedAuthor, $updatedTitle, $updatedStart, $updatedEnd, $updatedImportance, $updatedContent);
     xdebug_var_dump($modifiedPost);
 }
+
+// 5 - Supprimer un article:
+function blogPostDelete($data, $postId){
+    $deletePostQuery=$data->prepare(file_get_contents("database/deletePost.sql"));
+    $deletePostQuery -> bindParam(':postId', $postId);
+    echo("L'article a bien été supprimé");
+    return $deletePostQuery->execute();
+}
