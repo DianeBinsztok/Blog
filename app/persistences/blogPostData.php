@@ -11,7 +11,6 @@ function blogPostById($data, $searchedId){
 
     //file_get_contents retourne le contenu du fichier sous forme de string
     $postData= $data->query(file_get_contents("database/postDetails.sql")." WHERE articles.id=".$searchedId.";");
-    // essayer aussi avec une autre méthode PDO bindValue() et remplacer une velaur dans la string
     return $postData->fetch();
 }
 
@@ -32,6 +31,20 @@ function blogPostCreate($data, $postAuthorId, $postTitle, $postStartDate, $postE
     $newPostQuery -> bindParam(':postEndDate', $postEndDate);
     $newPostQuery -> bindParam(':postImportance', $postImportance);
     $newPostQuery -> bindParam(':postContent', $postContent);
-    return $createNewPost= $newPostQuery->execute();
+    return $newPostQuery->execute();
+}
 
+// 4 - Modifier un article:
+function blogPostUpdate($data, $postId, $updatedAuthor, $updatedTitle, $updatedStart, $updatedEnd, $updatedImportance, $updatedContent){
+    $updatedPost= $data->prepare(file_get_contents("database/updatePost.sql"));
+    $updatedPost -> bindParam(':newAuthor', $updatedAuthor);
+    $updatedPost -> bindParam(':newTitle', $updatedTitle);
+    $updatedPost -> bindParam(':newStartDate', $updatedStart);
+    $updatedPost -> bindParam(':newEndDate', $updatedEnd);
+    $updatedPost -> bindParam(':newImportance', $updatedImportance);
+    $updatedPost -> bindParam(':newContent', $updatedContent);
+    $updatedPost -> bindParam(':postId', $postId);
+    return $updatedPost->execute();
+    xdebug_var_dump($data, $postId, $updatedAuthor, $updatedTitle, $updatedStart, $updatedEnd, $updatedImportance, $updatedContent);
+    xdebug_var_dump($modifiedPost);
 }
